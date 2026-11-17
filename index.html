@@ -141,6 +141,30 @@
     letter-spacing:.03em;
   }
 
+
+  /* ヘッダー右側：PARTNER ONLY＋学生用資料サイトボタン（青） */
+  header .header-right{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .btn-student{
+    display:inline-flex; align-items:center; gap:6px;
+    background:#1F6FD1; color:#fff;
+    font-weight:700; font-size:13px; line-height:1;
+    padding:9px 16px; border-radius:50px;
+    box-shadow:0 6px 14px rgba(31,111,209,0.28);
+    transition:background .2s ease, transform .2s ease;
+    white-space:nowrap;
+  }
+  .btn-student:hover{ background:#1757A8; transform:translateY(-1px); }
+  .btn-student:focus-visible{ outline:3px solid #0E3E7A; outline-offset:2px; }
+  .btn-student svg{ width:14px; height:14px; }
+  .btn-student .lbl-short{ display:none; }
+  @media (max-width:640px){
+    header .header-right{ gap:6px; }
+    header .brand-tag{ display:none; }
+    .btn-student{ font-size:12px; padding:8px 12px; }
+    .btn-student .lbl-full{ display:none; }
+    .btn-student .lbl-short{ display:inline; }
+  }
+
   main{ max-width:1080px; margin:0 auto; padding:0 32px; }
   @media (max-width:640px){ main{ padding:0 18px; } header{ padding:14px 18px; } }
 
@@ -463,6 +487,128 @@
   .staff-bio{ font-size:13px; color:var(--sub); line-height:1.7; margin:0; text-align:left; }
 
   footer .disclaimer{ margin-bottom:6px; }
+
+  /* ============================================================
+     料金・各種規定（タブ切り替え／スマホ：2×2ボタン）
+     ============================================================ */
+  .policy-tabs{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+    margin:0 auto 22px; max-width:860px;
+  }
+  .policy-tab{
+    appearance:none; border:1px solid var(--line); background:var(--white);
+    color:var(--sub); cursor:pointer;
+    font-family:'M PLUS Rounded 1c', sans-serif; font-weight:700; font-size:14px;
+    padding:13px 10px; border-radius:50px; line-height:1.35;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .policy-tab .num{ color:var(--coral); margin-right:4px; }
+  .policy-tab:hover{ border-color:var(--coral); color:var(--blue-deep); }
+  .policy-tab[aria-selected="true"]{
+    background:var(--coral); border-color:var(--coral); color:#fff;
+    box-shadow:0 8px 18px rgba(214,48,63,0.26);
+  }
+  .policy-tab[aria-selected="true"] .num{ color:#fff; }
+  .policy-tab:focus-visible{ outline:3px solid var(--blue-deep); outline-offset:2px; }
+
+  .policy-panel{
+    background:var(--white); border:1px solid var(--line); border-radius:24px;
+    padding:34px 36px; max-width:860px; margin:0 auto;
+    font-size:14px; line-height:1.85;
+  }
+  .policy-panel[hidden]{ display:none; }
+  .policy-panel h3{
+    font-family:'M PLUS Rounded 1c', sans-serif; font-size:18px; font-weight:800;
+    color:var(--blue-deep); margin:0 0 6px;
+  }
+  .policy-panel .lead{ color:var(--sub); margin:0 0 22px; font-size:13.5px; }
+  .policy-block + .policy-block{ margin-top:30px; padding-top:26px; border-top:1px dashed var(--line); }
+  .policy-block h4{
+    display:flex; align-items:center; gap:10px;
+    font-family:'M PLUS Rounded 1c', sans-serif; font-size:15.5px; font-weight:800;
+    color:var(--ink); margin:0 0 14px;
+  }
+  .policy-block h4::before{
+    content:""; width:6px; height:18px; border-radius:3px; background:var(--coral); flex-shrink:0;
+  }
+  .policy-list{ margin:0; padding-left:1.3em; }
+  .policy-list li{ margin:0 0 8px; }
+  .policy-list li::marker{ color:var(--coral); }
+  .policy-list ol{ margin:8px 0 0; padding-left:1.4em; }
+  .policy-list ol li{ margin-bottom:6px; }
+
+  .policy-table{ width:100%; border-collapse:separate; border-spacing:0; font-size:13.5px; }
+  .policy-table th, .policy-table td{
+    padding:13px 16px; text-align:left; vertical-align:top;
+    border-bottom:1px solid var(--line);
+  }
+  .policy-table thead th{
+    background:var(--sky); color:var(--blue-deep); font-weight:700; font-size:12.5px;
+    border-bottom:none;
+  }
+  .policy-table thead th:first-child{ border-radius:12px 0 0 12px; }
+  .policy-table thead th:last-child{ border-radius:0 12px 12px 0; }
+  .policy-table tbody th{ font-weight:700; color:var(--ink); width:38%; }
+  .policy-table .em{ color:var(--coral-deep); font-weight:700; }
+  .policy-table td.num{ font-family:'M PLUS Rounded 1c', sans-serif; font-weight:800; font-size:16px; color:var(--blue-deep); white-space:nowrap; }
+  .policy-table td.yen{ color:var(--sub); white-space:nowrap; }
+
+  .policy-note{ font-size:12.5px; color:var(--sub); margin:12px 0 0; }
+  .policy-callout{
+    background:var(--sky); border-radius:16px; padding:16px 20px; margin-top:18px;
+    font-size:13.5px;
+  }
+  .policy-callout strong{ color:var(--blue-deep); }
+  .policy-callout.warn{ background:#FFF6E5; }
+  .policy-callout.warn strong{ color:#8A5A00; }
+  .policy-date{ text-align:right; font-size:12px; color:var(--sub); margin:22px 0 0; }
+
+  /* 返金イメージ図：12週間を1週ずつ並べる */
+  .refund-figure{ margin:18px 0 6px; padding:20px 18px 16px; border:1px solid var(--line); border-radius:16px; }
+  .refund-figure .cap{ font-size:13px; font-weight:700; margin:0 0 12px; }
+  .rf-row{ display:grid; grid-template-columns:repeat(12,1fr); gap:4px; }
+  .rf-row + .rf-row{ margin-top:6px; }
+  .rf-seg{
+    border-radius:8px; padding:7px 4px; text-align:center;
+    font-size:11.5px; font-weight:700; line-height:1.35;
+  }
+  .rf-plan .rf-seg{ background:#F4F6F8; color:var(--sub); grid-column:span 4; }
+  .rf-stay{ grid-column:span 2; background:var(--blue-deep); color:#fff; }
+  .rf-none{ grid-column:span 6; color:var(--blue-deep);
+    background:repeating-linear-gradient(-45deg, #F7DCDF 0 6px, #FBEAEA 6px 12px); }
+  .rf-half{ grid-column:span 4; background:#E4F3EA; color:#1F6B43; }
+  .rf-legend{ display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:12px; font-size:12px; color:var(--sub); }
+  .rf-legend span::before{ content:""; display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:-1px; }
+  .rf-legend .l1::before{ background:var(--blue-deep); }
+  .rf-legend .l2::before{ background:#F2C9CE; }
+  .rf-legend .l3::before{ background:#BFE3CD; }
+
+  /* ピークシーズン */
+  .peak-hero{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:14px; margin:4px 0 0;
+  }
+  .peak-box{ background:var(--sky); border-radius:18px; padding:20px 22px; text-align:center; }
+  .peak-box .k{ font-size:12.5px; color:var(--sub); font-weight:700; margin:0 0 4px; }
+  .peak-box .v{ font-family:'M PLUS Rounded 1c', sans-serif; font-weight:800; color:var(--blue-deep); font-size:20px; line-height:1.4; margin:0; }
+  .peak-box .v small{ font-size:13px; color:var(--sub); font-weight:700; }
+  .peak-box.accent{ background:var(--coral); }
+  .peak-box.accent .k{ color:#F9D9DC; }
+  .peak-box.accent .v, .peak-box.accent .v small{ color:#fff; }
+
+  @media (max-width:640px){
+    .policy-tabs{ grid-template-columns:1fr 1fr; gap:8px; }
+    .policy-tab{ font-size:13px; padding:12px 8px; border-radius:16px; }
+    .policy-panel{ padding:24px 18px; border-radius:20px; }
+    .policy-table thead{ display:none; }
+    .policy-table, .policy-table tbody, .policy-table tr, .policy-table th, .policy-table td{ display:block; width:100%; }
+    .policy-table tr{ border-bottom:1px solid var(--line); padding:12px 0; }
+    .policy-table tbody th, .policy-table td{ border:none; padding:2px 0; width:100%; }
+    .policy-table.fee tr{ display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:2px 12px; }
+    .policy-table.fee td.yen{ grid-column:2; text-align:right; }
+    .policy-table.fee td.num{ text-align:right; }
+    .rf-seg{ font-size:10px; padding:6px 2px; }
+    .peak-hero{ grid-template-columns:1fr; }
+  }
 </style>
 </head>
 <body>
@@ -478,7 +624,14 @@
         <span class="brand-sub round">エージェント専用ページ</span>
       </div>
     </div>
-    <span class="brand-tag">PARTNER ONLY</span>
+    <div class="header-right">
+      <span class="brand-tag">PARTNER ONLY</span>
+      <!-- ▼ 学生用資料サイトへのリンク -->
+      <a class="btn-student round" href="https://baguiojic-gif.github.io/jp-student-materials/" target="_blank" rel="noopener">
+        <span class="lbl-full">学生用資料サイト</span><span class="lbl-short">学生用資料</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </header>
 
   <main>
@@ -692,6 +845,143 @@
       </div>
     </section>
 
+    <!-- ============ 料金・各種規定 ============ -->
+    <section id="policy">
+      <div class="section-head">
+        <div class="eyebrow round">PRICING &amp; POLICY</div>
+        <h2>料金・各種規定</h2>
+        <p>返金規定や追加料金など<br>お客様へのご案内前にご確認ください</p>
+      </div>
+
+      <div class="policy-tabs" role="tablist" aria-label="料金・各種規定">
+        <button class="policy-tab" role="tab" id="ptab-1" aria-controls="ppanel-1" aria-selected="true"><span class="num">①</span>返金規定</button>
+        <button class="policy-tab" role="tab" id="ptab-2" aria-controls="ppanel-2" aria-selected="false" tabindex="-1"><span class="num">②</span>ピークシーズン<br>サーチャージ</button>
+        <button class="policy-tab" role="tab" id="ptab-3" aria-controls="ppanel-3" aria-selected="false" tabindex="-1"><span class="num">③</span>入学日の<br>変更回数</button>
+        <button class="policy-tab" role="tab" id="ptab-4" aria-controls="ppanel-4" aria-selected="false" tabindex="-1"><span class="num">④</span>直前変更の<br>追加手数料</button>
+      </div>
+
+      <!-- ① 返金規定 -->
+      <div class="policy-panel" role="tabpanel" id="ppanel-1" aria-labelledby="ptab-1">
+        <h3>返金規定について</h3>
+        <p class="lead">留学前・留学後それぞれのキャンセル時の返金条件です。</p>
+
+        <div class="policy-block">
+          <h4>留学前のキャンセル</h4>
+          <table class="policy-table">
+            <thead><tr><th>キャンセルのタイミング</th><th>返金内容</th></tr></thead>
+            <tbody>
+              <tr><th>入学金</th><td><span class="em">入学金の返金はありません。</span></td></tr>
+              <tr><th>入学日まで4週間以上ある場合</th><td>入学金のみのキャンセル料となります。</td></tr>
+              <tr><th>入学日まで1週間以上4週間未満<br>（土曜起点）</th><td>授業料と寮費の<span class="em">80%を返金</span>します。<br>（学生は授業料と寮費の20%を支払うことになります。）</td></tr>
+              <tr><th>入学日まで1週間以内<br>（前週の土曜起点）</th><td>①まず2週間分の授業料と寮費が自動的に差し引かれます。<br>②①を差し引いた残りの授業料と寮費から<span class="em">80%を返金</span>します。<br>（学生は2週間分の授業料と寮費に加えて、残りの授業料と寮費から20%を支払うことになります。）</td></tr>
+            </tbody>
+          </table>
+          <p class="policy-note">※返金は支払額に応じます。（プロモーションが適用されている場合は、プロモーション分は返金対象に含まれません。）</p>
+        </div>
+
+        <div class="policy-block">
+          <h4>留学後のキャンセル</h4>
+          <ul class="policy-list">
+            <li>入学金は返金されません。</li>
+            <li><strong>8週間以下</strong>の期間で留学される方は、返金がございません。</li>
+            <li>留学期間が8週間を超える場合、それ以降の期間は返金対象期間となります。ただし、残りの期間から<strong>50%</strong>となります。残りの期間は4週間ごとの基準で設定されます。</li>
+          </ul>
+
+          <div class="refund-figure" role="img" aria-label="例：12週間で申し込み、2週間滞在して10週間分をキャンセルした場合。最初の8週間分は返金不可、残り4週間分の50%を返金。">
+            <p class="cap">例：12週間で申し込み、2週間滞在して10週間分をキャンセルした場合</p>
+            <div class="rf-row rf-plan">
+              <div class="rf-seg">① 4週間</div><div class="rf-seg">② 4週間</div><div class="rf-seg">③ 4週間</div>
+            </div>
+            <div class="rf-row">
+              <div class="rf-seg rf-stay">2週間滞在</div>
+              <div class="rf-seg rf-none">8週間分までは返金不可</div>
+              <div class="rf-seg rf-half">残り期間の<br>50%返金</div>
+            </div>
+            <div class="rf-legend"><span class="l1">滞在期間</span><span class="l2">返金不可</span><span class="l3">返金対象（50%）</span></div>
+          </div>
+
+          <ul class="policy-list" style="margin-top:16px;">
+            <li>途中キャンセルをする場合でも、すでに支払っている金額の分をコース変更に使用したり、未来に受講するはずだった授業を遡って受講するなどの対応はできません。例えば、8週間で申し込んで4週間で途中キャンセルする場合、残り4週間分の返金がないからといって、すでに支払っている金額を別のコースへの変更、クラスの追加、部屋の変更などに使用することはできません。</li>
+            <li>原則、返金申請は、キャンセル日の4週間前までに行う必要があります。</li>
+            <li>未使用の現地費用は、100%返金されます。（2週間ベースで計算）</li>
+            <li>原則、部屋のダウングレード（例：1人部屋→2人部屋に移動など）及びプログラムのダウングレード（例：IELTS→ESL）による差額の返金は行われません。</li>
+            <li>返金は支払額に応じます。（プロモーションが適用されている場合は、プロモーション分は返金対象に含まれません。）</li>
+            <li>返金は必ず代理店を通して行われるものとします。返金は、原則留学プログラムの終了から4週間以内に代理店から行われます。</li>
+          </ul>
+
+          <div class="policy-callout">
+            <strong>学生本人・親族の急病によるキャンセル</strong><br>
+            学生自身や親族の急病によりキャンセルを余儀なくされた場合、残りの期間の50%の学費が返金されます（知人友人、恋人、ペットなどは含みません）。ただし、以下の条件があります。
+            <ol class="policy-list" style="margin-top:8px;">
+              <li>留学が開始されて以降に発症した病気に限ります。また、証明として医師の診断書と学校のマネジメントの了承が必須となります。</li>
+              <li>懸念される病気がある場合は、学生は留学前に学校側に予め報告する義務があります。それを怠った場合、学校は責任を持ちません。また、キャンセルによる返金も行われません。</li>
+              <li>親族や知人友人、恋人、ペットの死亡の場合は、こちらの対象とはなりません。ご注意ください。</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="policy-block">
+          <h4>返金が行われないケース</h4>
+          <ul class="policy-list">
+            <li>学校の規則を破り退学処分になった場合。</li>
+            <li>疫病や自然災害により学校の運営が困難になった場合（不可抗力）。</li>
+            <li>個人の過失により留学の継続が困難になった場合。</li>
+            <li>特別、かつ妥当な理由がないにも関わらず、キャンセルや返金を要請し学校運営や他の学生の学生生活を著しく阻害する場合。</li>
+            <li>その他、返金するに適切ではない事由。</li>
+          </ul>
+          <div class="policy-callout warn">
+            <strong>注意</strong><br>
+            お使い頂いた代理店ごとに、独自の返金規定がある場合があります。その場合、代理店の返金規定が優先されます。代理店の返金規定に関しては、代理店に直接ご確認ください。
+          </div>
+        </div>
+        <p class="policy-date">2026年2月16日</p>
+      </div>
+
+      <!-- ② ピークシーズンサーチャージ -->
+      <div class="policy-panel" role="tabpanel" id="ppanel-2" aria-labelledby="ptab-2" hidden>
+        <h3>ピークシーズンサーチャージ料金に関して</h3>
+        <p class="lead">弊校では、以下のピークシーズン（繁忙期）の期間にサーチャージ（追加料金）を設定しております。</p>
+        <div class="peak-hero">
+          <div class="peak-box">
+            <p class="k">対象期間</p>
+            <p class="v">2027年6月27日〜8月21日<br><small>（8週間）</small></p>
+          </div>
+          <div class="peak-box accent">
+            <p class="k">追加料金</p>
+            <p class="v">1週間ごとに<br>＋8,000円</p>
+          </div>
+        </div>
+        <div class="policy-callout">
+          上記の期間に留学される方は、<strong>期間中1週間ごとに＋8,000円</strong>の追加料金が課されます。
+        </div>
+      </div>
+
+      <!-- ③ 入学日の変更回数 -->
+      <div class="policy-panel" role="tabpanel" id="ppanel-3" aria-labelledby="ptab-3" hidden>
+        <h3>入学日の変更回数に関して</h3>
+        <p class="lead">入学日の変更回数には上限があります。</p>
+        <div class="policy-callout warn">
+          <strong>2回以上の変更は、一旦登録を白紙に戻し、再登録となります。</strong><br>
+          つまり、もしそのタイミングで新料金に変更されている場合などは、新料金が適用されることとなります。頻繁な留学日の変更にはご注意ください。
+        </div>
+      </div>
+
+      <!-- ④ 直前変更の追加手数料 -->
+      <div class="policy-panel" role="tabpanel" id="ppanel-4" aria-labelledby="ptab-4" hidden>
+        <h3>留学開始日の直前の変更に対する追加費用</h3>
+        <p class="lead">留学開始日の直前の留学日の変更（正確には3週間前以降）に対しては、追加の変更手数料が課されます。</p>
+        <table class="policy-table fee">
+          <thead><tr><th>変更のタイミング</th><th>手数料</th><th>日本円（145円換算）</th></tr></thead>
+          <tbody>
+            <tr><th>3週間前</th><td class="num">100 USD</td><td class="yen">14,500円</td></tr>
+            <tr><th>2週間前</th><td class="num">200 USD</td><td class="yen">29,000円</td></tr>
+            <tr><th>1週間以内</th><td class="num">300 USD</td><td class="yen">43,500円</td></tr>
+          </tbody>
+        </table>
+        <p class="policy-note">※上記の手数料は、適用されている日本円の固定レートで計算します。現在、固定レートは145円です。</p>
+      </div>
+    </section>
+
     <!-- ============ 日本人スタッフの紹介 ============ -->
     <!-- ▼ サンプルです。写真・名前・ポジション・経歴は後日、実際の内容に差し替えてください -->
     <section id="staff">
@@ -838,5 +1128,29 @@
     <div>© 2026 Baguio JIC</div>
   </footer>
 
+<script>
+  // 料金・各種規定のタブ切り替え
+  (function(){
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.policy-tab'));
+    function select(tab, focus){
+      tabs.forEach(function(t){
+        var on = (t === tab);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if(focus) tab.focus();
+    }
+    tabs.forEach(function(t, i){
+      t.addEventListener('click', function(){ select(t); });
+      t.addEventListener('keydown', function(e){
+        var n = null;
+        if(e.key === 'ArrowRight') n = tabs[(i+1) % tabs.length];
+        if(e.key === 'ArrowLeft')  n = tabs[(i-1+tabs.length) % tabs.length];
+        if(n){ e.preventDefault(); select(n, true); }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
